@@ -1,0 +1,27 @@
+version: '3'
+services:
+  db:
+    container_name: h2
+    image: oscarfonts/h2:latest
+    environment:
+      H2_OPTIONS: -ifNotExists
+    ports:
+      - "1521:1521"
+      - "8081:81"
+    volumes:
+      - ./h2/:/opt/h2-data
+  app:
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    container_name: exercise
+    image: exercise:latest
+    restart: on-failure
+    ports:
+      - "8080:8080"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:h2:tcp://h2:1521/exercise;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+      SPRING_DATASOURCE_USERNAME: sa
+      SPRING_DATASOURCE_PASSWORD:
+    depends_on:
+      - db
