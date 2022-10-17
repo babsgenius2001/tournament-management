@@ -27,6 +27,7 @@ If everything went well, you should be able to access the web app here: http://l
 
 A swagger-ui link to test the functionality of the API after running the application is also available via:
 * http://localhost:8080/swagger-ui/index.html
+
   ![swagger-diagram](image/apiInterfaces.png)
 
 You can also run the application via docker compose:
@@ -36,6 +37,9 @@ You can also run the application via docker compose:
 ### CI/CD Pipeline
 
 This application is also enriched with the ability to run through the various stages setup within its <b>build.yml</b> which comprises of the stages of Testing, SonarCloud Analysis, Application build(Docker), Publishing of the image to Docker Registry and Deployment to AWS Elastic BeanStalk.
+The flow looks like the diagram shown below:
+
+![pipeline-diagram](image/pipeline.png)
 
 ### Pulling the application from Docker Registry
 
